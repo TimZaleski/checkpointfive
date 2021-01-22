@@ -18,16 +18,6 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
-    'no-console': PROD ? ERROR : WARN,
-    'no-debugger': PROD ? ERROR : WARN,
-    'space-before-function-paren': [WARN, NEVER],
-    'vue/max-attributes-per-line': [ERROR, {
-      singleline: 5,
-      multiline: {
-        max: 1,
-        allowFirstLine: true
-      }
-    }],
-    'vue/html-self-closing': OFF
+
   }
 }
