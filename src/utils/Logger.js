@@ -1,3 +1,4 @@
+/* eslint-disable */
 function log(type, content) {
   if (window.location.origin.includes('localhost')) {
     // eslint-disable-next-line no-console

@@ -2,7 +2,7 @@
 import { AppState } from '../AppState'
 import { api } from './AxiosService'
 
-class PostService {
+class BlogService {
   async getBlogs() {
     const res = await api.get('api/blogs')
     console.log(res)
@@ -28,13 +28,12 @@ class PostService {
     AppState.blogs.splice(blogInd, 1)
   }
 
-  async editPost(postId, newTitle) {
-    const postData = { title: newTitle }
-    const res = await api.put('api/posts/' + postId, postData)
-    // this.getPosts()
-    const postInd = AppState.posts.findIndex(p => p.id === postId)
-    AppState.posts.splice(postInd, 1, res.data)
+  async editBlog(blogId, newTitle) {
+    const blogData = { title: newTitle }
+    const res = await api.put('api/blogs/' + blogId, blogData)
+    const blogInd = AppState.blogs.findIndex(b => b.id === blogId)
+    AppState.blogs.splice(blogInd, 1, res.data)
   }
 }
 
-export const postService = new PostService()
+export const blogService = new BlogService()

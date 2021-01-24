@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { initialize } from '@bcwdev/auth0provider-client'
 import { AppState } from '../AppState'
 import { audience, clientId, domain } from '../AuthConfig'
