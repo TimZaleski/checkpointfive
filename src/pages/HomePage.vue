@@ -34,7 +34,8 @@ export default {
   setup() {
     const state = reactive({
       blogs: computed(() => AppState.blogs),
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      activeBlog: computed(() => AppState.activeBlog)
     })
     onMounted(async() => {
       try {

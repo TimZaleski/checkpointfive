@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { AppState } from '../AppState'
+import router from "../router"
 import { api } from './AxiosService'
 
 class CommentService {
@@ -9,10 +10,11 @@ class CommentService {
     AppState.comments = res.data
   }
   
-  async createComment(commentData, blogId) {
+  async createComment(commentData) {
+    commentData.blog = AppState.activeBlog;
     const res = await api.post('api/comments', commentData)
     console.log(res)
-    this.getBlogCommentsById(blogId);
+    this.getBlogCommentsById(AppState.activeBlog.id);
   }
 
   async deleteComment(commentId) {
@@ -26,6 +28,13 @@ class CommentService {
     const res = await api.put('api/comments/' + commentId, commentData)
     const commentInd = AppState.comments.findIndex(c => c.id === commentId)
     AppState.comments.splice(commentInd, 1, res.data)
+  }
+  async selectBlog (blog) {
+    const res = await api.get('api/blogs/' + blog.id + '/comments')
+    AppState.comments = res.data;
+    AppState.activeBlog = blog;
+    AppState.blogs = [];
+    router.push('activeblog')
   }
 }
 

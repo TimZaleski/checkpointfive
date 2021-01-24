@@ -50,12 +50,11 @@
 import { logger } from '../utils/Logger'
 import { reactive } from 'vue'
 import { commentService } from '../services/CommentService'
+import $ from 'jquery'
+
 export default {
   name: 'CommentModal',
-  props: {
-    blogId: { type: String, required: true }
-  },
-  setup(props) {
+  setup() {
     const state = reactive({
       newComment: {}
     })
@@ -63,7 +62,9 @@ export default {
       state,
       async createComment() {
         try {
-          await commentService.createComment(state.newComment, props.blogId)
+          await commentService.createComment(state.newComment)
+           // @ts-ignore
+        $("#commentModelId").modal('hide');
         } catch (error) {
           logger.error(error)
         }

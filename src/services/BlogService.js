@@ -34,6 +34,7 @@ class BlogService {
     const blogInd = AppState.blogs.findIndex(b => b.id === blogId)
     AppState.blogs.splice(blogInd, 1, res.data)
   }
+
 }
 
 export const blogService = new BlogService()

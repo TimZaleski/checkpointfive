@@ -1,13 +1,13 @@
 /* eslint-disable */
 <template>
-  <div class="BlogComponent col-3 ">
+  <div class="BlogComponent col-3 " @click="selectBlog()">
     <div>
 <h4 class="card-title" :contenteditable="state.editBlog" @blur="editBlog">
           {{ blogProp.title }}
         </h4>
-<i class="fa fa-pencil" aria-hidden="true" v-if="state.account.id == blogProp.creatorId" @click="state.editBlog = !state.editBlog"></i>
-        <i class="fa fa-trash text-danger" aria-hidden="true" v-if="state.account.id == blogProp.creatorId" @click="deleteBlog"></i>
-    <p  v-if="blogProp.creator">
+<!-- <button aria-hidden="true" v-if="state.account.id == blogProp.creatorId" @click="state.editBlog = !state.editBlog">Edit</button> -->
+        <button aria-hidden="true" v-if="state.account.id == blogProp.creatorId" @click="deleteBlog">Delete</button>
+    <p class="card-text" v-if="blogProp.creator">
           Created By : {{ blogProp.creator.name }}
         </p>
         </div>
@@ -19,6 +19,7 @@ import { computed, reactive } from 'vue'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
 import { blogService } from '../services/BlogService'
+import { commentService } from "../services/CommentService"
 export default {
   name: 'BlogComponent',
   props: {
@@ -42,6 +43,14 @@ export default {
         try {
           blogService.editBlog(props.blogProp.id, e.target.innerText)
         } catch (error) {
+          logger.error(error)
+        }
+      },
+      selectBlog () {
+        try {
+          commentService.selectBlog(props.blogProp)
+        }
+        catch (error) {
           logger.error(error)
         }
       }
