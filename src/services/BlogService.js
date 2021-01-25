@@ -28,8 +28,8 @@ class BlogService {
     AppState.blogs.splice(blogInd, 1)
   }
 
-  async editBlog(blogId, newTitle) {
-    const blogData = { title: newTitle }
+  async editBlog(blogId, newBody) {
+    const blogData = { body: newBody }
     const res = await api.put('api/blogs/' + blogId, blogData)
     const blogInd = AppState.blogs.findIndex(b => b.id === blogId)
     AppState.blogs.splice(blogInd, 1, res.data)

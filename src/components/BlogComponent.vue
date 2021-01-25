@@ -6,7 +6,7 @@
           {{ blogProp.title }}
         </h4>
 <!-- <button aria-hidden="true" v-if="state.account.id == blogProp.creatorId" @click="state.editBlog = !state.editBlog">Edit</button> -->
-        <button aria-hidden="true" v-if="state.account.id == blogProp.creatorId" @click="deleteBlog">Delete</button>
+        <button aria-hidden="true" v-if="state.account.id == blogProp.creatorId" @click.stop="deleteBlog">Delete</button>
     <p class="card-text" v-if="blogProp.creator">
           Created By : {{ blogProp.creator.name }}
         </p>

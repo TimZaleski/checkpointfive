@@ -34,7 +34,7 @@ class CommentService {
     AppState.comments = res.data;
     AppState.activeBlog = blog;
     AppState.blogs = [];
-    router.push('activeblog')
+    router.push({ path: `/activeblog/${blog.id}` }) 
   }
 }
 

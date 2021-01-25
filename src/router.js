@@ -28,7 +28,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/activeblog',
+    path: '/activeblog/:id',
     name: 'ActiveBlog',
     component: loadPage('ActiveBlogPage')
   },
